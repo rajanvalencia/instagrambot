@@ -15,5 +15,5 @@ pip3 install python-decouple
 # Execution
 
 ```
-python3 main.py
+python3 autolike.py
 ```
