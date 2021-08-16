@@ -8,7 +8,6 @@ brew install chromedriver
 
 ```
 pip3 install selenium
-
 pip3 install python-decouple
 ```
 
