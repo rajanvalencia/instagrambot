@@ -20,6 +20,6 @@ PASSWORD=**********
 
 # Run
 
-```
+```python
 python3 autolike.py
 ```
