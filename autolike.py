@@ -52,19 +52,20 @@ def main():
                     total_likes +=  1
                 except NoSuchElementException:
                     pass
-            
-                # greeting = ["Hi", "Hello", "Hey", "Heeey", "Greetings"]
-                # random_idx = random.randint(0, (len(greeting)-1))
-                # my_comment = greeting[random_idx] + " I saw your photos - they are beautiful! wanna collab??"
-                # form = driver.find_element_by_tag_name("form").click()
-                # text_area = driver.find_element_by_tag_name("textarea")
-                # text_area.send_keys(my_comment)
-                # submit = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))).click()
+
+                # comment(driver)
 
             except WebDriverException:
                 print_and_close(driver, total_likes)
 
     print_and_close(driver, total_likes)
+
+def comment(driver):
+    driver.find_element_by_tag_name("form").click()
+    text_area = driver.find_element_by_tag_name("textarea")
+    text_area.send_keys(config('COMMENT'))
+    submit_button = EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
+    WebDriverWait(driver, 10).until(submit_button).click()
 
 def print_and_close(driver, total_likes):
     print('Total likes: ', total_likes)
