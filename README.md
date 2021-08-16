@@ -11,6 +11,13 @@ pip3 install selenium
 pip3 install python-decouple
 ```
 
+# Create environment variables
+```.env```
+```
+USERNAME=**********
+PASSWORD=**********
+```
+
 # Run
 
 ```
