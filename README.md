@@ -14,7 +14,10 @@ pip3 install python-decouple
 ```
 
 ## Create environment variables
-```.env```
+```
+touch .env
+```
+#### Inside ```.env```
 ```
 USERNAME=**********
 PASSWORD=**********
