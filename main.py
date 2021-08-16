@@ -47,8 +47,7 @@ def main():
                 driver.get(link)
 
                 try:
-                    like_button = driver.find_element_by_xpath("//*[@aria-label='いいね！']")
-                    like_button.click()
+                    like(driver)
                     total_likes +=  1
                 except NoSuchElementException:
                     pass
@@ -60,6 +59,12 @@ def main():
 
     print_and_close(driver, total_likes)
 
+
+def like(driver):
+    like_button = driver.find_element_by_xpath("//*[@aria-label='いいね！']")
+    like_button.click()
+
+
 def comment(driver):
     driver.find_element_by_tag_name("form").click()
     text_area = driver.find_element_by_tag_name("textarea")
@@ -67,10 +72,12 @@ def comment(driver):
     submit_button = EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))
     WebDriverWait(driver, 10).until(submit_button).click()
 
+
 def print_and_close(driver, total_likes):
     print('Total likes: ', total_likes)
     time.sleep(2)
     driver.close()
+
 
 if __name__ == "__main__":
     main()
