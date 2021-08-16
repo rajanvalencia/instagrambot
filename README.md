@@ -17,7 +17,7 @@ pip3 install python-decouple
 ```
 touch .env
 ```
-### Inside ```.env``` file
+### Inside .env file
 ```
 USERNAME=**********
 PASSWORD=**********
