@@ -47,12 +47,12 @@ def main():
                 driver.get(link)
 
                 try:
-                    like(driver)
+                    like_post(driver)
                     total_likes +=  1
                 except NoSuchElementException:
                     pass
 
-                # comment(driver)
+                # comment_post(driver)
 
             except WebDriverException:
                 print_and_close(driver, total_likes)
@@ -60,12 +60,12 @@ def main():
     print_and_close(driver, total_likes)
 
 
-def like(driver):
+def like_post(driver):
     like_button = driver.find_element_by_xpath("//*[@aria-label='いいね！']")
     like_button.click()
 
 
-def comment(driver):
+def comment_post(driver):
     driver.find_element_by_tag_name("form").click()
     text_area = driver.find_element_by_tag_name("textarea")
     text_area.send_keys(config('COMMENT'))
