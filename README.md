@@ -20,7 +20,12 @@ touch .env
 ### Inside .env file
 ```
 USERNAME=**********
+
 PASSWORD=**********
+
+LIKE_LIMIT=500
+
+COMMENT=Hello world!!
 ```
 
 ## Run

@@ -19,7 +19,8 @@ def main():
     username.send_keys(config('USERNAME'))
     password.send_keys(config('PASSWORD'))
 
-    submit = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))).click()
+    # Submit
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']"))).click()
 
     time.sleep(5)
     later_button = EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), '後で')]"))
@@ -28,7 +29,9 @@ def main():
 
     total_likes = 0;
 
-    hashtags = ["多言語", "多文化", "多文化共生", "多文化教育", "多文化交流",   "多様性", "日本語", "日本語学校", "日本語教師", "日本語勉強"]
+    hashtags = ["多言語", "多文化", "多文化共生", "多文化教育", "多文化交流",  "多様性", "日本語", "日本語学校", "日本語教師", "日本語勉強"]
+
+    max_likes_per_hashtag = config('LIKE_LIMIT') / len(hashtags)
 
     for hashtag in hashtags:
         driver.get("https://www.instagram.com/explore/tags/" + hashtag + "/")
@@ -42,7 +45,7 @@ def main():
         links = [l.get_attribute("href") for l in links]
         links = [l for l in links if l.startswith("https://www.instagram.com/p/")]
 
-        for link in links[:40]:
+        for link in links[:max_likes_per_hashtag]:
             try:
                 driver.get(link)
 
@@ -53,6 +56,10 @@ def main():
                     pass
 
                 # comment_post(driver)
+            
+                if total_likes > config('LIKE_LIMIT'):
+                    print('Limit reached')
+                    print_and_close(driver, total_likes)
 
             except WebDriverException:
                 print_and_close(driver, total_likes)
