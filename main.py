@@ -31,7 +31,8 @@ def main():
 
     hashtags = ["多言語", "多文化", "多文化共生", "多文化教育", "多文化交流",  "多様性", "日本語", "日本語学校", "日本語教師", "日本語勉強"]
 
-    max_likes_per_hashtag = config('LIKE_LIMIT') / len(hashtags)
+    max_likes_per_hashtag = int(config('LIKE_LIMIT')) // len(hashtags)
+    print('Max likes per hashtag: ', max_likes_per_hashtag)
 
     for hashtag in hashtags:
         driver.get("https://www.instagram.com/explore/tags/" + hashtag + "/")
@@ -57,7 +58,7 @@ def main():
 
                 # comment_post(driver)
             
-                if total_likes > config('LIKE_LIMIT'):
+                if total_likes > int(config('LIKE_LIMIT')):
                     print('Limit reached')
                     print_and_close(driver, total_likes)
 
