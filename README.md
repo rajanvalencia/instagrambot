@@ -26,5 +26,5 @@ PASSWORD=**********
 ## Run
 
 ```python
-python3 autolike.py
+python3 main.py
 ```
