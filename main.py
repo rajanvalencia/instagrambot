@@ -46,6 +46,8 @@ def main():
         links = [l.get_attribute("href") for l in links]
         links = [l for l in links if l.startswith("https://www.instagram.com/p/")]
 
+        print('Liking', hashtag + '...')
+
         for link in links[:max_likes_per_hashtag]:
             try:
                 driver.get(link)
